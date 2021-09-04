@@ -103,8 +103,6 @@ class HomeVC: BaseVC {
     
     // Add text container view and hide it initially
     func addTextContentView() {
-          
-
         textContentView = UIView()
         textContentView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(textContentView)
@@ -129,7 +127,7 @@ class HomeVC: BaseVC {
             textContentView.centerYAnchor.constraint(equalTo: headerlb.centerYAnchor),
             textContentView.leadingAnchor.constraint(equalTo: cancelBu.trailingAnchor,constant:5),
             textContentView.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -15),
-            textContentView.heightAnchor.constraint(equalToConstant: 60)
+            textContentView.heightAnchor.constraint(equalToConstant: 55)
         ])
          
         doneBu = UIButton(type: .system)

@@ -34,7 +34,7 @@ class HomeVM {
         info.desc = dic["description"]
         info.icon = dic["icon"]
         info.iconId = dic["iconId"]
-        info.speed = String(format: "%.2f",Float(dic["speed"]!)!)
+        info.speed = String(format: "%.2f Km/h",Float(dic["speed"]!)!)
         info.temp = dic["temp"]!.fromKelvinToCelsius()
         info.humidity = dic["humidity"]! + " %"
         info.date = Date(timeIntervalSince1970:Double(dic["date"]!)!)

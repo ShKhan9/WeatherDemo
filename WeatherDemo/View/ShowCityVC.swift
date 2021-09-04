@@ -91,7 +91,7 @@ class ShowCityVC: BaseVC {
         roundedView.addSubview(icon)
         NSLayoutConstraint.activate([
             icon.centerXAnchor.constraint(equalTo: roundedView.centerXAnchor),
-            icon.topAnchor.constraint(equalTo: roundedView.topAnchor,constant:50),
+            icon.topAnchor.constraint(equalTo: roundedView.topAnchor,constant:70),
             icon.widthAnchor.constraint(equalToConstant: 70),
             icon.heightAnchor.constraint(equalToConstant: 70)
         ])
@@ -103,7 +103,7 @@ class ShowCityVC: BaseVC {
         NSLayoutConstraint.activate([
             mainStack.leadingAnchor.constraint(equalTo: roundedView.leadingAnchor,constant: 20),
             mainStack.trailingAnchor.constraint(equalTo: roundedView.trailingAnchor,constant: -20),
-            mainStack.topAnchor.constraint(equalTo: icon.bottomAnchor,constant:50),
+            mainStack.topAnchor.constraint(equalTo: icon.bottomAnchor,constant:70),
             mainStack.bottomAnchor.constraint(equalTo: roundedView.bottomAnchor,constant:-10)
         ])
         
