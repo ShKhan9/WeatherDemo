@@ -16,6 +16,7 @@ class HomeVC: BaseVC {
     var textContentView:UIView!
     var doneBu:UIButton!
     var emptylb:UILabel!
+    var themeSeg:UISegmentedControl!
     
     // Define all data related properties
     let res = WeatherVM()
@@ -43,6 +44,7 @@ class HomeVC: BaseVC {
         addBottomStyling(CGPoint(x: 1.0, y:0.55))
         addTable()
         addTextContentView()
+        addThemeSegment()
     }
     // Add top header label
     func addHeader() {
@@ -158,6 +160,19 @@ class HomeVC: BaseVC {
             emptylb.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
     }
+    // Add switch for theme change
+    func addThemeSegment {
+        themeSeg = UISegmentedControl(items: ["Light","Dark"])
+        themeSeg.selectedSegmentTintColor = getAppThemeColor()
+        themeSeg.selectedSegmentIndex = isLight ? 0 : 1
+        themeSeg.translatesAutoresizingMaskIntoConstraints = false
+        themeSeg.addTarget(self, action: #selector(self.segChanged(_:)), for:.valueChanged)
+        view.addSubview(themeSeg)
+        NSLayoutConstraint.activate([
+            themeSeg.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            themeSeg.centerYAnchor.constraint(equalTo: headerlb.centerYAnchor)
+        ])
+    }
     // Remove no cities label
     func removeEmptylb() {
         emptylb?.removeFromSuperview()
@@ -177,6 +192,13 @@ class HomeVC: BaseVC {
             showToast(message: "Invalid city name")
         }
         
+    }
+    
+    @objc func segChanged(_ sender:UISegmentedControl) {
+        isLight.toggle()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+            (UIApplication.shared.delegate as! AppDelegate).window?.rootViewController = HomeVC()
+        }
     }
    
     // Start getting weather info for a city
@@ -206,6 +228,7 @@ class HomeVC: BaseVC {
         textContentView.isHidden = !show
         headerlb.isHidden = show
         plusBu.isHidden = show
+        themeSeg.isHidden = show
         addTexF.text = ""
         plusBu.tag = show ? 1 : 0
         let _ = show ? addTexF.becomeFirstResponder() : addTexF.resignFirstResponder()
