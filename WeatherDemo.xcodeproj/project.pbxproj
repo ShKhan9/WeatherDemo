@@ -13,6 +13,7 @@
 		5287C06F26E3875300703D52 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5287C06E26E3875300703D52 /* BaseVC.swift */; };
 		5287C07226E394E500703D52 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5287C07126E394E500703D52 /* PaddingLabel.swift */; };
 		5287C0C126E3DC0000703D52 /* WeatherDemoTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5287C0C026E3DC0000703D52 /* WeatherDemoTesting.swift */; };
+		5287C0D426E3DED200703D52 /* SFProText-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5288E86426E283F10055CB69 /* SFProText-Bold.ttf */; };
 		5288E83226E26DB50055CB69 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5288E83126E26DB50055CB69 /* AppDelegate.swift */; };
 		5288E83426E26DB50055CB69 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5288E83326E26DB50055CB69 /* SceneDelegate.swift */; };
 		5288E83626E26DB50055CB69 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5288E83526E26DB50055CB69 /* HomeVC.swift */; };
@@ -21,7 +22,6 @@
 		5288E84126E26DB70055CB69 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5288E83F26E26DB70055CB69 /* LaunchScreen.storyboard */; };
 		5288E84F26E2735F0055CB69 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5288E84E26E2735F0055CB69 /* Theme.swift */; };
 		5288E85926E27F1E0055CB69 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5288E85826E27F1E0055CB69 /* Extensions.swift */; };
-		5288E86526E283F10055CB69 /* SFProText-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5288E86426E283F10055CB69 /* SFProText-Bold.ttf */; };
 		5288E87426E28E9D0055CB69 /* WeatherVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 5288E87326E28E9D0055CB69 /* WeatherVM.m */; };
 		5288E88326E2A4CB0055CB69 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5288E88226E2A4CB0055CB69 /* Model.swift */; };
 		5288E88826E2B2C70055CB69 /* HomeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5288E88726E2B2C70055CB69 /* HomeVM.swift */; };
@@ -305,8 +305,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5288E84126E26DB70055CB69 /* LaunchScreen.storyboard in Resources */,
+				5287C0D426E3DED200703D52 /* SFProText-Bold.ttf in Resources */,
 				5288E83E26E26DB70055CB69 /* Assets.xcassets in Resources */,
-				5288E86526E283F10055CB69 /* SFProText-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
