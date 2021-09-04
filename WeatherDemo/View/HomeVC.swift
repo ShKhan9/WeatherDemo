@@ -15,6 +15,7 @@ class HomeVC: BaseVC {
     var addTexF:UITextField!
     var textContentView:UIView!
     var doneBu:UIButton!
+    var cancelBu:UIButton!
     var emptylb:UILabel!
     var themeSeg:UISegmentedControl!
     
@@ -102,13 +103,31 @@ class HomeVC: BaseVC {
     
     // Add text container view and hide it initially
     func addTextContentView() {
-         
+          
+
         textContentView = UIView()
         textContentView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(textContentView)
+  
+        cancelBu = UIButton(type: .system)
+        cancelBu.tintColor = otherThemeColor
+        cancelBu.setTitleColor(otherThemeColor, for: .normal)
+        cancelBu.setImage(UIImage(systemName: "xmark.circle"), for: .normal)
+        cancelBu.addTarget(self, action: #selector(self.cancelButtonClicked(_:)), for:.touchUpInside)
+        cancelBu.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(cancelBu)
+        
+        NSLayoutConstraint.activate([
+            cancelBu.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 5),
+            cancelBu.centerYAnchor.constraint(equalTo: textContentView.centerYAnchor),
+            cancelBu.widthAnchor.constraint(equalToConstant: 50),
+            cancelBu.heightAnchor.constraint(equalToConstant: 50)
+       ])
+        
+
         NSLayoutConstraint.activate([
             textContentView.centerYAnchor.constraint(equalTo: headerlb.centerYAnchor),
-            textContentView.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 15),
+            textContentView.leadingAnchor.constraint(equalTo: cancelBu.trailingAnchor,constant:5),
             textContentView.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -15),
             textContentView.heightAnchor.constraint(equalToConstant: 60)
         ])
@@ -142,6 +161,8 @@ class HomeVC: BaseVC {
         textContentView.layer.borderColor = otherThemeColor.cgColor
         textContentView.layer.borderWidth = 1
         textContentView.isHidden = true
+        cancelBu.isHidden = true
+        
     }
     // Add no cities label
     func addEmptylb() {
@@ -196,6 +217,10 @@ class HomeVC: BaseVC {
         
     }
     
+    @objc func cancelButtonClicked(_ sender:UIButton) {
+        showTextCon(false)
+    }
+    
     @objc func segChanged(_ sender:UISegmentedControl) {
         isLight.toggle()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
@@ -228,6 +253,7 @@ class HomeVC: BaseVC {
     // manage textfield container show/hide
     func showTextCon(_ show:Bool) {
         textContentView.isHidden = !show
+        cancelBu.isHidden = !show
         headerlb.isHidden = show
         plusBu.isHidden = show
         themeSeg.isHidden = show
