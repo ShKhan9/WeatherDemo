@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-var isLight = false
+var isLight = true
 var currentThemeColor = isLight ? UIColor.white : UIColor.black
 var otherThemeColor = isLight ? UIColor(hexString:"#3D4548") : UIColor(hexString: "#797F88")
 var viewThemeColor = isLight ? UIColor.white : UIColor(hexString: "#262627")

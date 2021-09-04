@@ -173,9 +173,8 @@ class HomeVC: UIViewController {
         plusBu.tag = show ? 1 : 0
     }
      
-    @objc func accessoryClicked(_ sender:UITapGestureRecognizer){ 
-        print("clicked access")
-        let vc = ShowCityVC()
+    @objc func accessoryClicked(_ sender:UITapGestureRecognizer) {
+        let vc = HistoryVC()
         vc.city = allCities[sender.view!.tag]
         self.present(vc, animated: true, completion: nil)
     }
@@ -205,6 +204,12 @@ extension HomeVC:UITableViewDelegate,UITableViewDataSource {
         imgView.tintColor = getAppThemeColor()
         cell.accessoryView = imgView
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = ShowCityVC()
+        vc.city = allCities[indexPath.row]
+        self.present(vc, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
