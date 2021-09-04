@@ -161,7 +161,7 @@ class HomeVC: BaseVC {
         ])
     }
     // Add switch for theme change
-    func addThemeSegment {
+    func addThemeSegment() {
         themeSeg = UISegmentedControl(items: ["Light","Dark"])
         themeSeg.selectedSegmentTintColor = getAppThemeColor()
         themeSeg.selectedSegmentIndex = isLight ? 0 : 1
