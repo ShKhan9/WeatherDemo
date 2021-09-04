@@ -14,7 +14,8 @@ class HomeVC: BaseVC {
     var addTexF:UITextField!
     var textContentView:UIView!
     var doneBu:UIButton!
- 
+    var emptylb:UILabel!
+    
     let res = WeatherVM()
     let homeViewModel = HomeVM()
     var allCities = [City]()
@@ -28,6 +29,9 @@ class HomeVC: BaseVC {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         allCities = homeViewModel.getCities()
+        if allCities.isEmpty {
+            addEmptylb()
+        }
         print(allCities.count)
         configUI()
     }
@@ -132,6 +136,26 @@ class HomeVC: BaseVC {
         textContentView.layer.borderWidth = 1
         textContentView.isHidden = true
     }
+    
+    func addEmptylb() {
+        emptylb = UILabel()
+        emptylb.text = "There is no data to show , click above + and add a city name"
+        emptylb.textColor = otherThemeColor
+        emptylb.textAlignment = .center
+        emptylb.numberOfLines = 0
+        emptylb.font = UIFont(name: "SFProText-Bold", size: 21)
+        emptylb.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(emptylb)
+        NSLayoutConstraint.activate([
+            emptylb.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant:20),
+            emptylb.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            emptylb.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+    }
+    
+    func removeEmptylb() {
+        emptylb?.removeFromSuperview()
+    }
    
     @objc func doneButtonClicked(_ sender:UIButton) {
         
@@ -144,11 +168,16 @@ class HomeVC: BaseVC {
     }
    
     func startSearchWith(_ name:String) {
-        res.getWeatherData(for:name) { res in
-            self.homeViewModel.saveWeatherData(name,res)
-            self.allCities = self.homeViewModel.getCities()
-            self.citiesTv.reloadData()
-            print(self.allCities.count)
+        res.getWeatherData(for:name) { [weak self] res in
+            if res != nil {
+                self?.homeViewModel.saveWeatherData(name,res)
+                self?.allCities = self?.homeViewModel.getCities() ?? []
+                self?.citiesTv.reloadData()
+                self?.removeEmptylb()
+            }
+            else {
+                self?.showToast(message: "Problem getting weather info, please try again with correct city name")
+            }
         }
     }
     @objc func addButtonClicked(_ sender:UIButton) {
@@ -212,6 +241,9 @@ extension HomeVC:UITableViewDelegate,UITableViewDataSource {
             let item = allCities[indexPath.row]
             homeViewModel.deleteCity(item)
             allCities.remove(at: indexPath.row)
+            if allCities.isEmpty {
+                addEmptylb()
+            }
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }

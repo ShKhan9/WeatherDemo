@@ -75,6 +75,34 @@ extension UIViewController {
         return isLight ? UIColor(hexString: "#2388C7") : UIColor(hexString: "#C53249")
         
     }
+    
+    func showToast(message : String,duration:TimeInterval = 3.0,delay:TimeInterval = 2.0) {
+  
+        let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 75, y: self.view.frame.size.height-100, width: 150, height: 40))
+        toastLabel.backgroundColor = otherThemeColor
+        toastLabel.translatesAutoresizingMaskIntoConstraints = false
+        toastLabel.textColor = currentThemeColor
+        toastLabel.textAlignment = .center;
+        toastLabel.text = "  " + message + "  "
+        toastLabel.alpha = 1.0
+        toastLabel.numberOfLines = 0
+        toastLabel.layer.cornerRadius = 20
+        toastLabel.clipsToBounds  =  true
+        self.view.addSubview(toastLabel)
+        
+        NSLayoutConstraint.activate([
+            toastLabel.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -100),
+            toastLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor,constant: 20),
+            toastLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor,constant: -20)
+        ])
+       
+        UIView.animate(withDuration:duration, delay: delay, options: .curveEaseOut, animations: {
+             toastLabel.alpha = 0.0
+        }, completion: {(isCompleted) in
+            toastLabel.removeFromSuperview()
+        })
+    }
+    
 
    
 }
