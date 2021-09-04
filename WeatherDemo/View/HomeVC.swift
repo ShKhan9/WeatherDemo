@@ -8,6 +8,7 @@
 import UIKit 
 class HomeVC: BaseVC {
 
+    // Define all UI properties
     var citiesTv:UITableView!
     var plusBu:UIButton!
     var headerlb:UILabel!
@@ -16,10 +17,12 @@ class HomeVC: BaseVC {
     var doneBu:UIButton!
     var emptylb:UILabel!
     
+    // Define all data related properties
     let res = WeatherVM()
     let homeViewModel = HomeVM()
     var allCities = [City]()
     
+    // Set empty view for programmatic vc
     override func loadView() {
         view = UIView(frame: UIScreen.main.bounds)
         view.backgroundColor = viewThemeColor
@@ -27,12 +30,13 @@ class HomeVC: BaseVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        //  Get all cities stored in coredata
         allCities = homeViewModel.getCities()
-        addEmptylb()
-        print(allCities.count)
+        // Add no cities label if cities has no data
+        addEmptylb() 
         configUI()
     }
+    // Add all ui elements
     func configUI() {
         addHeader()
         addPlusBu() 
@@ -40,6 +44,7 @@ class HomeVC: BaseVC {
         addTable()
         addTextContentView()
     }
+    // Add top header label
     func addHeader() {
         headerlb = UILabel()
         headerlb.text = "CITIES"
@@ -52,6 +57,7 @@ class HomeVC: BaseVC {
             headerlb.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
+    // Add top plus button
     func addPlusBu() {
         plusBu = UIButton(type: .system)
         plusBu.setTitle("+", for: .normal)
@@ -71,7 +77,7 @@ class HomeVC: BaseVC {
             plusBu.heightAnchor.constraint(equalToConstant: 113)
         ])
     }
-  
+    // Add cities table
     func addTable() {
         citiesTv = UITableView(frame: CGRect.zero, style: .plain)
         citiesTv.translatesAutoresizingMaskIntoConstraints = false
@@ -92,6 +98,7 @@ class HomeVC: BaseVC {
         
     }
     
+    // Add text container view and hide it initially
     func addTextContentView() {
          
         textContentView = UIView()
@@ -134,7 +141,7 @@ class HomeVC: BaseVC {
         textContentView.layer.borderWidth = 1
         textContentView.isHidden = true
     }
-    
+    // Add no cities label
     func addEmptylb() {
         guard allCities.isEmpty else { return }
         emptylb = UILabel()
@@ -151,41 +158,50 @@ class HomeVC: BaseVC {
             emptylb.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
     }
-    
+    // Remove no cities label
     func removeEmptylb() {
         emptylb?.removeFromSuperview()
     }
-   
+    // Add done button tapped when user adds a city
     @objc func doneButtonClicked(_ sender:UIButton) {
-        
+        // remove white spaces from around the entered text
         let cityName = addTexF.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         if cityName != "" {
+            // Start getting city weather info
             startSearchWith(cityName)
+            // Hide text container view
             showTextCon(false)
         }
         else {
+            // Show error when user enters invalid city name
             showToast(message: "Invalid city name")
         }
         
     }
    
+    // Start getting weather info for a city
     func startSearchWith(_ name:String) {
         res.getWeatherData(for:name) { [weak self] res in
             if res != nil {
+                // Save response to coredata
                 self?.homeViewModel.saveWeatherData(name,res)
                 self?.allCities = self?.homeViewModel.getCities() ?? []
+                // Refresh the tableView after data changed
                 self?.citiesTv.reloadData()
+                // Remove empty label if exists
                 self?.removeEmptylb()
             }
             else {
+                // Show error message when there is a problem with api call
                 self?.showToast(message: "Problem getting weather info, please try again with correct city name")
             }
         }
     }
+    // Action of plus button to add a new city
     @objc func addButtonClicked(_ sender:UIButton) {
             showTextCon(sender.tag == 0)
     }
-    
+    // manage textfield container show/hide
     func showTextCon(_ show:Bool) {
         textContentView.isHidden = !show
         headerlb.isHidden = show
@@ -194,7 +210,7 @@ class HomeVC: BaseVC {
         plusBu.tag = show ? 1 : 0
         let _ = show ? addTexF.becomeFirstResponder() : addTexF.resignFirstResponder()
     }
-     
+    // handle table accessory click to navigate to history data for a specific city
     @objc func accessoryClicked(_ sender:UITapGestureRecognizer) {
         let vc = HistoryVC()
         vc.city = allCities[sender.view!.tag]
@@ -229,20 +245,25 @@ extension HomeVC:UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Display city latest weather data
         let vc = ShowCityVC()
         vc.city = allCities[indexPath.row]
         self.present(vc, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        // Enable editing for delete
         return true
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
             let item = allCities[indexPath.row]
+            // Delete city when user swips
             homeViewModel.deleteCity(item)
+            // Update table dataSource array
             allCities.remove(at: indexPath.row)
+            // Remove empty label if exists
             addEmptylb()
             tableView.deleteRows(at: [indexPath], with: .fade)
         }

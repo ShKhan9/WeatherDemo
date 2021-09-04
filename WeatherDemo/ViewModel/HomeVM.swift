@@ -9,8 +9,13 @@ import Foundation
 import UIKit
 import CoreData
 
+// Manage data of HomeVC
 class HomeVM {
+    
+    // Coredata context
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    // Get all cities stored in coredata
     func getCities() -> [City] { 
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName:"City")
         do {
@@ -22,6 +27,7 @@ class HomeVM {
         }
     }
     
+    // Save weather info for a city a long with saving it
     func saveWeatherData(_ cityName:String,_ dic:[AnyHashable:Any]?) {
         guard let dic = dic as? [String:String] else { return }
         let info = WeatherInfo(context: context)
@@ -46,6 +52,7 @@ class HomeVM {
         
     }
     
+    // Save city to coredata
     func saveCityWith(_ name:String,_ id:Int32) {
         let london = City(context: context)
         london.name = name
@@ -58,6 +65,7 @@ class HomeVM {
         }
     }
     
+    // Delete city from coredata
     func deleteCity(_ city:City) {
         context.delete(city)
         do {

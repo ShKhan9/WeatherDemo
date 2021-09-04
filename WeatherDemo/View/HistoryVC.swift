@@ -7,14 +7,18 @@
 
 import UIKit
 class HistoryVC: BaseVC {
- 
+    
+    // Define all UI properties
     var closeBu:UIButton!
     var headerlb:UILabel!
     var historyTv:UITableView!
     
+    // Define all data related properties
     let historyVM = HistoryVM()
     var allHistory = [WeatherInfo]()
     var city:City!
+    
+    // Set empty view for programmatic vc
     override func loadView() {
         view = UIView(frame: UIScreen.main.bounds)
         view.backgroundColor = viewThemeColor
@@ -22,7 +26,7 @@ class HistoryVC: BaseVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view. 
+        //  Get all weather info for a city
         allHistory = historyVM.getHistoryFor(city.id)
         configUI()
     }
@@ -87,7 +91,7 @@ class HistoryVC: BaseVC {
         ])
         
     }
-      
+    // dismiss vc when user clicks back button
     @objc func backButtonClicked(_ sender:UIButton) {
          
         self.dismiss(animated: true, completion:nil)

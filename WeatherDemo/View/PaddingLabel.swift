@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+// Custom label class to add a padding from all aspects of a label
 @IBDesignable class PaddingLabel: UILabel {
 
     @IBInspectable var topInset: CGFloat = 10.0

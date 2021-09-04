@@ -7,14 +7,17 @@
 
 import UIKit
 class ShowCityVC: BaseVC {
- 
+    // Define all UI properties
     var closeBu:UIButton!
     var headerlb:UILabel!
     var roundedView:UIView!
     
+    // Define all data related properties
     let showViewModel = ShowCityVM()
     var city:City!
     var weatherInfo:WeatherInfo!
+    
+    // Set empty view for programmatic vc
     override func loadView() {
         view = UIView(frame: UIScreen.main.bounds)
         view.backgroundColor = viewThemeColor
@@ -22,7 +25,7 @@ class ShowCityVC: BaseVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        //  Get all latest city weather info
         weatherInfo = showViewModel.getLastWetherInfoFor(city.id)
         configUI()
     }
@@ -104,14 +107,15 @@ class ShowCityVC: BaseVC {
             mainStack.bottomAnchor.constraint(equalTo: roundedView.bottomAnchor,constant:-10)
         ])
         
+        // Add sub items to main stack
         mainStack.addArrangedSubview(creatRowStack("Description", weatherInfo.desc!))
         mainStack.addArrangedSubview(creatRowStack("TEMPERATURE", weatherInfo.temp!))
         mainStack.addArrangedSubview(creatRowStack("HUMIDTY", weatherInfo.humidity!))
         mainStack.addArrangedSubview(creatRowStack("SPEED", weatherInfo.speed!))
     }
     
+    // Create a row for every supplied key,value
     func creatRowStack(_ key:String,_ value:String) -> UIStackView {
-        
         let subStack = UIStackView()
         subStack.axis = .horizontal
         subStack.distribution = .fillEqually
@@ -120,23 +124,26 @@ class ShowCityVC: BaseVC {
             subStack.heightAnchor.constraint(equalToConstant: 50)
         ])
         
+        // Create key label
         let keylb = UILabel()
         keylb.textColor = otherThemeColor
         keylb.textAlignment = .left
         keylb.text = key
         
+        // Create value label
         let valuelb = UILabel()
         valuelb.font = UIFont(name: "SFProText-Bold", size: 21)
         valuelb.textColor = getAppThemeColor()
         valuelb.textAlignment = .right
         valuelb.text = value
        
+        // add labels to sub stack
         subStack.addArrangedSubview(keylb)
         subStack.addArrangedSubview(valuelb)
         
         return subStack
     }
-
+    // Create bottom information label
     func addBottomlb() {
         let bottomlb = UILabel()
         bottomlb.textColor = otherThemeColor
@@ -154,7 +161,7 @@ class ShowCityVC: BaseVC {
             bottomlb.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
-      
+    // dismiss vc when user clicks back button
     @objc func backButtonClicked(_ sender:UIButton) {
          
         self.dismiss(animated: true, completion:nil)

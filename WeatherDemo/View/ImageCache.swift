@@ -9,6 +9,7 @@
 import Foundation
 import UIKit 
 let imageCache = NSCache<AnyObject, AnyObject>()
+// Custom imageView class for saving/loading image
 class ImageLoader: UIImageView {
     var imageURL: URL?
     let activityIndicator = UIActivityIndicatorView()

@@ -8,6 +8,8 @@
 import Foundation
 import UIKit
 import SystemConfiguration
+
+// Create color from hex string
 extension UIColor {
 
     convenience init(hexString: String) {
@@ -29,6 +31,7 @@ extension UIColor {
 
 extension UIViewController {
     
+    // Add background gradient to VC's view
     func addBottomStyling(_ start:CGPoint) {
             let bottomImgV = UIImageView()
             bottomImgV.backgroundColor = .clear
@@ -48,8 +51,8 @@ extension UIViewController {
             gradient.endPoint =  CGPoint(x: 1.0, y: 1.0)
             gradient.frame = CGRect(x: 0.0, y: 0.0, width: self.view.frame.size.width, height: self.view.frame.size.height)
             self.view.layer.insertSublayer(gradient, at: 0)
-   } 
-    
+    }
+    // Check network status
     func noNetwork() -> Bool  {
         var zeroAddress = sockaddr_in()
         zeroAddress.sin_len = UInt8(MemoryLayout.size(ofValue: zeroAddress))
@@ -70,12 +73,11 @@ extension UIViewController {
         return !(isReachable && !needsConnection)
     }
     
+    // Get main app theme color according to app current theme
     func getAppThemeColor() -> UIColor {
-        
         return isLight ? UIColor(hexString: "#2388C7") : UIColor(hexString: "#C53249")
-        
     }
-    
+    // Show toast message
     func showToast(message : String,duration:TimeInterval = 4.0,delay:TimeInterval = 2.0) {
   
         let toastLabel = PaddingLabel(frame: CGRect(x: self.view.frame.size.width/2 - 75, y: self.view.frame.size.height-100, width: 150, height: 40))
@@ -106,7 +108,7 @@ extension UIViewController {
 }
 
 extension UITextField {
-    
+    // Add placeholder with color according to current app theme
     func addPlaceholder(_ str:String) {
         self.attributedPlaceholder =
             NSAttributedString(string:str, attributes: [NSAttributedString.Key.foregroundColor : UIColor.lightGray ])
@@ -118,7 +120,7 @@ extension UITextField {
  
 
 extension Date {
-     
+    // Convert date to string with a specific format
     func toDateString() -> String {
         let dayTimePeriodFormatter = DateFormatter()
         dayTimePeriodFormatter.dateFormat = "dd.MM.yyy-hh:mm"
@@ -131,7 +133,7 @@ extension Date {
 
 
 extension String {
-     
+    // Convert Kelvin temp to Celsius temp
     func fromKelvinToCelsius() -> String {
         let value = Double(self)!
         let res = value - 273.15

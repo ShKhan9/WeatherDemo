@@ -9,8 +9,10 @@ import Foundation
 import UIKit
 import CoreData
 
+// Manage data for ShowCityVC
 class ShowCityVM {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    // Get the last weather request info associated with a specific city
     func getLastWetherInfoFor(_ id:Int32) -> WeatherInfo? {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName:"WeatherInfo")
         do {
