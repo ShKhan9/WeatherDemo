@@ -17,8 +17,7 @@ extension UIColor {
         if hexString.hasPrefix("#") {
             cleanedHexString = String(hexString.dropFirst())
         }
-        var rgbValue: UInt32 = 0
-        Scanner(string: cleanedHexString).scanHexInt32(&rgbValue)
+        let rgbValue = Scanner(string: cleanedHexString).scanInt32(representation: .hexadecimal)!
         let red = CGFloat((rgbValue >> 16) & 0xff) / 255.0
         let green = CGFloat((rgbValue >> 08) & 0xff) / 255.0
         let blue = CGFloat((rgbValue >> 00) & 0xff) / 255.0

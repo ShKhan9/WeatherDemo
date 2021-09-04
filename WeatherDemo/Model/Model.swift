@@ -8,4 +8,4 @@
 
 import Foundation
 
-// there is no models for the app as they are created automatically by coredata City and WeatherInfo
+// There is no models for the app as they are created automatically by coredata City and WeatherInfo

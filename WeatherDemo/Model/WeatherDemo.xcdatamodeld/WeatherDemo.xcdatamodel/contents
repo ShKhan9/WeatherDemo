@@ -3,7 +3,6 @@
     <entity name="City" representedClassName="City" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <relationship name="relationship" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="WeatherInfo"/>
     </entity>
     <entity name="WeatherInfo" representedClassName="WeatherInfo" syncable="YES" codeGenerationType="class">
         <attribute name="cityId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
@@ -16,7 +15,7 @@
         <attribute name="temp" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="City" positionX="-63" positionY="-18" width="128" height="88"/>
+        <element name="City" positionX="-498.1640625" positionY="43.84375" width="128" height="73"/>
         <element name="WeatherInfo" positionX="-54" positionY="9" width="128" height="163"/>
     </elements>
 </model>
