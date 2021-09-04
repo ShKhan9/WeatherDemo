@@ -54,6 +54,7 @@ class HomeVM {
     
     // Save city to coredata
     func saveCityWith(_ name:String,_ id:Int32) {
+        guard !(getCities().map { $0.id }.contains(id)) else { return }
         let london = City(context: context)
         london.name = name
         london.id = id

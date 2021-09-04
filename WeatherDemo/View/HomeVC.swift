@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  HomeVC.swift
 //  WeatherDemo
 //
 //  Created by MacBook Pro on 9/3/21.
@@ -147,7 +147,7 @@ class HomeVC: BaseVC {
     func addEmptylb() {
         guard allCities.isEmpty else { return }
         emptylb = UILabel()
-        emptylb.text = "There is no data to show , click above + and add a city name"
+        emptylb.text = "There is no data to show , click above + to add a city"
         emptylb.textColor = otherThemeColor
         emptylb.textAlignment = .center
         emptylb.numberOfLines = 0
@@ -165,6 +165,8 @@ class HomeVC: BaseVC {
         themeSeg = UISegmentedControl(items: ["Light","Dark"])
         themeSeg.selectedSegmentTintColor = getAppThemeColor()
         themeSeg.selectedSegmentIndex = isLight ? 0 : 1
+        themeSeg.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : otherThemeColor], for: .normal)
+        themeSeg.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : currentThemeColor], for: .selected)
         themeSeg.translatesAutoresizingMaskIntoConstraints = false
         themeSeg.addTarget(self, action: #selector(self.segChanged(_:)), for:.valueChanged)
         view.addSubview(themeSeg)
