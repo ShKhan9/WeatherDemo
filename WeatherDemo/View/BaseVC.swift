@@ -11,11 +11,5 @@ class BaseVC: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return isLight ? .darkContent : .lightContent
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view. 
-       
-    }
- 
+     
 }

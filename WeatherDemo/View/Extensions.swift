@@ -28,6 +28,7 @@ extension UIColor {
 
 
 extension UIViewController {
+    
     func addBottomStyling(_ start:CGPoint) {
             let bottomImgV = UIImageView()
             bottomImgV.backgroundColor = .clear
