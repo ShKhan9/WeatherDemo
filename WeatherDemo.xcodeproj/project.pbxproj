@@ -78,6 +78,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		5287C07426E3A70300703D52 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5288E85C26E2809B0055CB69 /* Fonts */,
+				5288E83D26E26DB70055CB69 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		5288E82526E26DB50055CB69 = {
 			isa = PBXGroup;
 			children = (
@@ -103,10 +112,8 @@
 				5288E84B26E26DEF0055CB69 /* ViewModel */,
 				5288E84A26E26DE90055CB69 /* View */,
 				5288E84926E26DE10055CB69 /* Model */,
-				5288E83D26E26DB70055CB69 /* Assets.xcassets */,
-				5288E83F26E26DB70055CB69 /* LaunchScreen.storyboard */,
+				5287C07426E3A70300703D52 /* Resources */,
 				5288E84226E26DB70055CB69 /* Info.plist */,
-				5288E83A26E26DB50055CB69 /* WeatherDemo.xcdatamodeld */,
 			);
 			path = WeatherDemo;
 			sourceTree = "<group>";
@@ -115,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				5288E88226E2A4CB0055CB69 /* Model.swift */,
+				5288E83A26E26DB50055CB69 /* WeatherDemo.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -122,7 +130,6 @@
 		5288E84A26E26DE90055CB69 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				5288E85C26E2809B0055CB69 /* Fonts */,
 				5288E83526E26DB50055CB69 /* HomeVC.swift */,
 				5288E89126E2C1090055CB69 /* ShowCityVC.swift */,
 				5287C06826E37ED500703D52 /* HistoryVC.swift */,
@@ -131,6 +138,7 @@
 				5288E85826E27F1E0055CB69 /* Extensions.swift */,
 				522C6C9826E2F39C0001EEB0 /* ImageCache.swift */,
 				5287C07126E394E500703D52 /* PaddingLabel.swift */,
+				5288E83F26E26DB70055CB69 /* LaunchScreen.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";

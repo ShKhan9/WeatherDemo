@@ -7,11 +7,10 @@
 
 import UIKit
 import CoreData
-let Save = UserDefaults.standard
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    // App main window
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
