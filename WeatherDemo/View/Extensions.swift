@@ -76,9 +76,9 @@ extension UIViewController {
         
     }
     
-    func showToast(message : String,duration:TimeInterval = 3.0,delay:TimeInterval = 2.0) {
+    func showToast(message : String,duration:TimeInterval = 4.0,delay:TimeInterval = 2.0) {
   
-        let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 75, y: self.view.frame.size.height-100, width: 150, height: 40))
+        let toastLabel = PaddingLabel(frame: CGRect(x: self.view.frame.size.width/2 - 75, y: self.view.frame.size.height-100, width: 150, height: 40))
         toastLabel.backgroundColor = otherThemeColor
         toastLabel.translatesAutoresizingMaskIntoConstraints = false
         toastLabel.textColor = currentThemeColor
@@ -86,14 +86,12 @@ extension UIViewController {
         toastLabel.text = "  " + message + "  "
         toastLabel.alpha = 1.0
         toastLabel.numberOfLines = 0
-        toastLabel.layer.cornerRadius = 20
-        toastLabel.clipsToBounds  =  true
         self.view.addSubview(toastLabel)
         
         NSLayoutConstraint.activate([
             toastLabel.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -100),
-            toastLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor,constant: 20),
-            toastLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor,constant: -20)
+            toastLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor,constant: 40),
+            toastLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor,constant: -40)
         ])
        
         UIView.animate(withDuration:duration, delay: delay, options: .curveEaseOut, animations: {

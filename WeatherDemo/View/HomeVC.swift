@@ -29,9 +29,7 @@ class HomeVC: BaseVC {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         allCities = homeViewModel.getCities()
-        if allCities.isEmpty {
-            addEmptylb()
-        }
+        addEmptylb()
         print(allCities.count)
         configUI()
     }
@@ -138,6 +136,7 @@ class HomeVC: BaseVC {
     }
     
     func addEmptylb() {
+        guard allCities.isEmpty else { return }
         emptylb = UILabel()
         emptylb.text = "There is no data to show , click above + and add a city name"
         emptylb.textColor = otherThemeColor
@@ -163,6 +162,9 @@ class HomeVC: BaseVC {
         if cityName != "" {
             startSearchWith(cityName)
             showTextCon(false)
+        }
+        else {
+            showToast(message: "Invalid city name")
         }
         
     }
@@ -241,9 +243,7 @@ extension HomeVC:UITableViewDelegate,UITableViewDataSource {
             let item = allCities[indexPath.row]
             homeViewModel.deleteCity(item)
             allCities.remove(at: indexPath.row)
-            if allCities.isEmpty {
-                addEmptylb()
-            }
+            addEmptylb()
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
