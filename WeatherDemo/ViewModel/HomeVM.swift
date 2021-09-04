@@ -28,7 +28,7 @@ class HomeVM {
         info.desc = dic["description"]
         info.icon = dic["icon"]
         info.iconId = dic["iconId"]
-        info.speed = dic["speed"]
+        info.speed = String(format: "%.2f",Float(dic["speed"]!)!)
         info.temp = dic["temp"]!.fromKelvinToCelsius()
         info.humidity = dic["humidity"]! + " %"
         info.date = Date(timeIntervalSince1970:Double(dic["date"]!)!)
@@ -58,5 +58,14 @@ class HomeVM {
         }
     }
     
+    func deleteCity(_ city:City) {
+        context.delete(city)
+        do {
+            try context.save()
+        }
+        catch {
+            print("Error saving coredata : ",error)
+        }
+    }
     
 }

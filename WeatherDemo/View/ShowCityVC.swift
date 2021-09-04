@@ -6,7 +6,7 @@
 //
 
 import UIKit
-class ShowCityVC: UIViewController {
+class ShowCityVC: BaseVC {
  
     var closeBu:UIButton!
     var headerlb:UILabel!
@@ -18,12 +18,12 @@ class ShowCityVC: UIViewController {
     override func loadView() {
         view = UIView(frame: UIScreen.main.bounds)
         view.backgroundColor = viewThemeColor
-        weatherInfo = showViewModel.getLastWetherInfoFor(city.id)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        weatherInfo = showViewModel.getLastWetherInfoFor(city.id)
         configUI()
     }
     func configUI() {

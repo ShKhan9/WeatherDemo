@@ -6,7 +6,7 @@
 //
 
 import UIKit
-class HistoryVC: UIViewController {
+class HistoryVC: BaseVC {
  
     var closeBu:UIButton!
     var headerlb:UILabel!
@@ -18,12 +18,12 @@ class HistoryVC: UIViewController {
     override func loadView() {
         view = UIView(frame: UIScreen.main.bounds)
         view.backgroundColor = viewThemeColor
-        allHistory = historyVM.getHistoryFor(city.id)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        // Do any additional setup after loading the view. 
+        allHistory = historyVM.getHistoryFor(city.id)
         configUI()
     }
     func configUI() {
@@ -74,6 +74,7 @@ class HistoryVC: UIViewController {
         historyTv.dataSource = self
         historyTv.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         historyTv.rowHeight = 100
+        historyTv.backgroundColor = .clear
         let back = UIView()
         back.backgroundColor = .clear
         historyTv.tableFooterView = back
@@ -104,6 +105,8 @@ extension HistoryVC:UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
+        cell.backgroundColor = .clear
+        cell.contentView.backgroundColor = .clear
         let item = allHistory[indexPath.row]
         cell.backgroundColor = .clear
         cell.contentView.backgroundColor = .clear

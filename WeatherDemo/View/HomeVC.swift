@@ -6,7 +6,7 @@
 //
 
 import UIKit 
-class HomeVC: UIViewController {
+class HomeVC: BaseVC {
 
     var citiesTv:UITableView!
     var plusBu:UIButton!
@@ -114,12 +114,10 @@ class HomeVC: UIViewController {
             doneBu.centerYAnchor.constraint(equalTo: textContentView.centerYAnchor),
             doneBu.widthAnchor.constraint(equalToConstant: 40),
         ])
-        
-        
+         
         addTexF = UITextField()
         addTexF.addPlaceholder("Enter city name")
         addTexF.textColor = otherThemeColor
-        addTexF.addTarget(self, action: #selector(textEdited), for: .valueChanged)
         addTexF.font = UIFont(name: "SFProText-Bold", size: 21)
         addTexF.translatesAutoresizingMaskIntoConstraints = false
         textContentView.addSubview(addTexF)
@@ -134,16 +132,10 @@ class HomeVC: UIViewController {
         textContentView.layer.borderWidth = 1
         textContentView.isHidden = true
     }
-    
-    @objc func textEdited(_ sender:UITextField) {
-         
-        
-    }
-    
+   
     @objc func doneButtonClicked(_ sender:UIButton) {
         
         let cityName = addTexF.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        
         if cityName != "" {
             startSearchWith(cityName)
             showTextCon(false)
@@ -160,9 +152,7 @@ class HomeVC: UIViewController {
         }
     }
     @objc func addButtonClicked(_ sender:UIButton) {
-        
             showTextCon(sender.tag == 0)
-       
     }
     
     func showTextCon(_ show:Bool) {
@@ -171,6 +161,7 @@ class HomeVC: UIViewController {
         plusBu.isHidden = show
         addTexF.text = ""
         plusBu.tag = show ? 1 : 0
+        let _ = show ? addTexF.becomeFirstResponder() : addTexF.resignFirstResponder()
     }
      
     @objc func accessoryClicked(_ sender:UITapGestureRecognizer) {
@@ -210,6 +201,19 @@ extension HomeVC:UITableViewDelegate,UITableViewDataSource {
         let vc = ShowCityVC()
         vc.city = allCities[indexPath.row]
         self.present(vc, animated: true, completion: nil)
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete) {
+            let item = allCities[indexPath.row]
+            homeViewModel.deleteCity(item)
+            allCities.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
