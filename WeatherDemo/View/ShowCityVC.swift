@@ -98,7 +98,8 @@ class ShowCityVC: UIViewController {
         mainStack.translatesAutoresizingMaskIntoConstraints = false
         roundedView.addSubview(mainStack)
         NSLayoutConstraint.activate([
-            mainStack.centerXAnchor.constraint(equalTo: roundedView.centerXAnchor),
+            mainStack.leadingAnchor.constraint(equalTo: roundedView.leadingAnchor,constant: 20),
+            mainStack.trailingAnchor.constraint(equalTo: roundedView.trailingAnchor,constant: -20),
             mainStack.topAnchor.constraint(equalTo: icon.bottomAnchor,constant:50),
             mainStack.bottomAnchor.constraint(equalTo: roundedView.bottomAnchor,constant:-10)
         ])
