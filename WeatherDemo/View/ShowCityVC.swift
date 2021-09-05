@@ -108,7 +108,7 @@ class ShowCityVC: BaseVC {
         ])
         
         // Add sub items to main stack
-        mainStack.addArrangedSubview(creatRowStack("Description", weatherInfo.desc!))
+        mainStack.addArrangedSubview(creatRowStack("DESCRIPTION", weatherInfo.desc!))
         mainStack.addArrangedSubview(creatRowStack("TEMPERATURE", weatherInfo.temp!))
         mainStack.addArrangedSubview(creatRowStack("HUMIDTY", weatherInfo.humidity!))
         mainStack.addArrangedSubview(creatRowStack("SPEED", weatherInfo.speed!))
