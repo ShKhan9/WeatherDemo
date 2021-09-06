@@ -27,7 +27,7 @@
 		5288E89226E2C1090055CB69 /* ShowCityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5288E89126E2C1090055CB69 /* ShowCityVC.swift */; };
 		5288E89626E2C5E10055CB69 /* ShowCityVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5288E89526E2C5E10055CB69 /* ShowCityVM.swift */; };
 		61627EA86522D1C1678CDAB8 /* libPods-WeatherDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FED04118C176BA2FEE447F /* libPods-WeatherDemo.a */; };
-		DEA372BF26E4D45300ACE3AB /* SFProText-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DEA372BE26E4D45300ACE3AB /* SFProText-Bold.ttf */; };
+		DEA5EA8126E628620069748E /* SFProText-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DEA5EA8026E628620069748E /* SFProText-Bold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,7 +69,7 @@
 		5288E89526E2C5E10055CB69 /* ShowCityVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowCityVM.swift; sourceTree = "<group>"; };
 		6344591917DDB848CE521A6F /* Pods-WeatherDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherDemo.release.xcconfig"; path = "Target Support Files/Pods-WeatherDemo/Pods-WeatherDemo.release.xcconfig"; sourceTree = "<group>"; };
 		90FED04118C176BA2FEE447F /* libPods-WeatherDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WeatherDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DEA372BE26E4D45300ACE3AB /* SFProText-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFProText-Bold.ttf"; path = "../../../../../Downloads/SFProText-Bold.ttf"; sourceTree = "<group>"; };
+		DEA5EA8026E628620069748E /* SFProText-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Bold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,7 +200,7 @@
 		5288E85C26E2809B0055CB69 /* Font */ = {
 			isa = PBXGroup;
 			children = (
-				DEA372BE26E4D45300ACE3AB /* SFProText-Bold.ttf */,
+				DEA5EA8026E628620069748E /* SFProText-Bold.ttf */,
 			);
 			path = Font;
 			sourceTree = "<group>";
@@ -305,7 +305,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5288E84126E26DB70055CB69 /* LaunchScreen.storyboard in Resources */,
-				DEA372BF26E4D45300ACE3AB /* SFProText-Bold.ttf in Resources */,
+				DEA5EA8126E628620069748E /* SFProText-Bold.ttf in Resources */,
 				5288E83E26E26DB70055CB69 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
